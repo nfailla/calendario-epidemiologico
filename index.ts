@@ -32,9 +32,12 @@ btn.addEventListener('click', () => {
   const [DD, MM, YYYY] = input['value'].split('/');
   const diaConsulta = moment(`${YYYY}${MM}${DD}`);
 
-  const primerDiaDelAnio = diaConsulta.startOf('year');
+  const primerDiaDelAnio = moment(`${YYYY}${MM}${DD}`).startOf('year');
   console.log('primerDiaDelAnio: ' + primerDiaDelAnio.format('DD[/]MM[/]YYYY'))
   const diaUno = primerDiaDelAnio.startOf('week');
+  console.log('diaUno: ' + diaUno.format('DD[/]MM[/]YYYY'))
+
+  console.log('diaConsulta: ' + diaConsulta.format('DD[/]MM[/]YYYY'))
 
   const result = calculateSemanaEpidemiologica(diaUno, diaConsulta);
   appDiv.innerHTML = `<h4>${result}</h4>`;
