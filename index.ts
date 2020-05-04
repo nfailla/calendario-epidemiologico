@@ -32,44 +32,33 @@ btn.addEventListener('click', () => {
   const [DD, MM, YYYY] = input['value'].split('/');
   const diaConsulta = moment(`${YYYY}${MM}${DD}`);
 
-  /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año. De lo contrario, se calcula el año próximo. */
+  const result = calculateSemanaEpidemiologica([DD, MM, YYYY]);
+  appDiv.innerHTML = `<h4>${result}</h4>`;
+});
+
+function calculateSemanaEpidemiologica([DD, MM, YYYY]): string{
+
+  /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año... */
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
-  const diasHastaFinDeAnio = Math.abs(diaConsulta.diff(finDeAnio, 'days'));
+  const diasHastaFinDeAnio = Math.abs(moment(`${YYYY}${MM}${DD}`).diff(finDeAnio, 'days'));
 
   const nombreDia = finDeAnio.format('dddd');
-  console.log(nombreDia);
+  console.log('nombreDia: ' + nombreDia);
   if(diasHastaFinDeAnio < 7 &&
      nombreDia === 'Sunday' ||
      nombreDia === 'Monday' ||
      nombreDia === 'Tuesday'
   ){
-    console.log('es semana 1 del próximo año');
+    return `Semana epidemiológica #1`;
   }
 
-  
-
-
-
+  // De lo contrario, se calcula el presente año.
 
   const primerDiaDelAnio = moment(`${YYYY}${MM}${DD}`).startOf('year');
-  console.log('primerDiaDelAnio: ' + primerDiaDelAnio.format('DD[/]MM[/]YYYY'))
+  //console.log('primerDiaDelAnio: ' + primerDiaDelAnio.format('DD[/]MM[/]YYYY'))
   const diaUno = primerDiaDelAnio.startOf('week');
-  console.log('diaUno: ' + diaUno.format('DD[/]MM[/]YYYY'))
 
-  console.log('diaConsulta: ' + diaConsulta.format('DD[/]MM[/]YYYY'))
-
-  
-
-
-
-
-
-  const result = calculateSemanaEpidemiologica(diaUno, diaConsulta);
-  appDiv.innerHTML = `<h4>${result}</h4>`;
-});
-
-function calculateSemanaEpidemiologica(primerDia, diaConsulta): string{
-  const diferenciaDias = diaConsulta.diff(primerDia, 'days');
+  const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUno, 'days');
 
   const semana = Math.floor(diferenciaDias / 7) + 1;
 
