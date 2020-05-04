@@ -3,18 +3,6 @@ import './style.css';
 
 // Import MomentJS
 import moment from 'moment';
-//import es from 'moment/locale/es';
-//moment().localeData('es', es);
-
-//const primerDia = moment('20191229', 'YYYYMMDD');
-
-//const primerDiaDelAnio = moment().startOf('year');
-/*console.log(
-  //primerDiaDelAnio.format('DD[/]MM[/]YYYY')
-  primerDiaDelAnio.startOf('week').format('DD[/]MM[/]YYYY')
-);*/
-
-//const diaUno = primerDiaDelAnio.startOf('week');
 
 const appDiv: HTMLElement = document.getElementById('app');
 const input: HTMLElement = document.getElementById('input');
