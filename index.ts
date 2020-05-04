@@ -42,14 +42,15 @@ function calculateSemanaEpidemiologica([DD, MM, YYYY]): string{
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
   const diasHastaFinDeAnio = Math.abs(moment(`${YYYY}${MM}${DD}`).diff(finDeAnio, 'days'));
 
-  const nombreDia = finDeAnio.format('dddd');
-  console.log('nombreDia: ' + nombreDia);
-  if(diasHastaFinDeAnio < 7 &&
-     nombreDia === 'Sunday' ||
-     nombreDia === 'Monday' ||
-     nombreDia === 'Tuesday'
+  const nombreDiaFinDeAnio = finDeAnio.format('dddd');
+  const nombreDiaConsulta = moment(`${YYYY}${MM}${DD}`).format('dddd');
+  console.log('nombreDia: ' + nombreDiaFinDeAnio);
+  if(diasHastaFinDeAnio < 7 /*&&
+     nombreDiaFinDeAnio === 'Sunday' ||
+     nombreDiaFinDeAnio === 'Monday' ||
+     nombreDiaFinDeAnio === 'Tuesday'*/
   ){
-    return `Semana epidemiológica #1`;
+    return `Semana epidemiológica #fff`;
   }
 
   // De lo contrario, se calcula el presente año.
