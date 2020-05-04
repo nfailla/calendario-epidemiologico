@@ -41,14 +41,19 @@ function calculateSemanaEpidemiologica([DD, MM, YYYY]): string{
   /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año... */
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
   const diasHastaFinDeAnio = Math.abs(moment(`${YYYY}${MM}${DD}`).diff(finDeAnio, 'days'));
+  console.log('diasHastaFinDeAnio: ' + diasHastaFinDeAnio);
 
   const nombreDiaFinDeAnio = finDeAnio.format('dddd');
   const nombreDiaConsulta = moment(`${YYYY}${MM}${DD}`).format('dddd');
   console.log('nombreDia: ' + nombreDiaFinDeAnio);
-  if(diasHastaFinDeAnio < 7 /*&&
-     nombreDiaFinDeAnio === 'Sunday' ||
+
+
+  
+
+  if(esUltimaSemana &&
+     (nombreDiaFinDeAnio === 'Sunday' ||
      nombreDiaFinDeAnio === 'Monday' ||
-     nombreDiaFinDeAnio === 'Tuesday'*/
+     nombreDiaFinDeAnio === 'Tuesday')
   ){
     return `Semana epidemiológica #fff`;
   }
@@ -77,7 +82,7 @@ function cantSemanasEpidemio(YYYY){
   );
 
 
-  
+
 }
 
 cantSemanasEpidemio(2020);
