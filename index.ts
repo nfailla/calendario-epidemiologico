@@ -19,6 +19,18 @@ console.log('hoy: ' + hoy.format('dddd DD [de] MMMM [de] YYYY'));
 console.log('primerDia: ' + primerDia.format('dddd DD [de] MMMM [de] YYYY'));
 console.log('fromNow: ' + primerDia.fromNow());
 
-console.log('diferencia en días: ' + hoy.diff(primerDia, 'days'));
+const diferencia = hoy.diff(primerDia, 'days');
+console.log('diferencia en días: ' + diferencia);
+
+let ret = calculateSemanaEpidemiologica(diferencia);
+console.log(ret);
 
 
+function calculateSemanaEpidemiologica(cantDiasFromInicio: number): string{
+  let semana = Math.floor(cantDiasFromInicio / 7) + 1;
+
+  return `Semana epidemiológica #${semana}`;
+}
+
+
+appDiv.innerHTML = `<h1>${ret}</h1>`;
