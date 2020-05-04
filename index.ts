@@ -32,6 +32,16 @@ btn.addEventListener('click', () => {
   const [DD, MM, YYYY] = input['value'].split('/');
   const diaConsulta = moment(`${YYYY}${MM}${DD}`);
 
+  /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año. De lo contrario, se calcula el año próximo. */
+  const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
+  console.log(
+    'días hasta fin de año: ' +
+    diaConsulta.diff(finDeAnio)
+  );
+
+
+
+
   const primerDiaDelAnio = moment(`${YYYY}${MM}${DD}`).startOf('year');
   console.log('primerDiaDelAnio: ' + primerDiaDelAnio.format('DD[/]MM[/]YYYY'))
   const diaUno = primerDiaDelAnio.startOf('week');
@@ -39,7 +49,7 @@ btn.addEventListener('click', () => {
 
   console.log('diaConsulta: ' + diaConsulta.format('DD[/]MM[/]YYYY'))
 
-  /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año. De lo contrario, se calcula el año próximo. */
+  
 
 
 
