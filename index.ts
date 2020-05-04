@@ -36,9 +36,8 @@ btn.addEventListener('click', () => {
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
   const diasHastaFinDeAnio = Math.abs(diaConsulta.diff(finDeAnio, 'days'));
 
-  console.log(finDeAnio.format('dddd'));
-
   const nombreDia = finDeAnio.format('dddd');
+  console.log(nombreDia);
   if(diasHastaFinDeAnio < 7 &&
      nombreDia === 'Sunday' ||
      nombreDia === 'Monday' ||
