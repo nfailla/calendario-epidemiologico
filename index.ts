@@ -65,3 +65,19 @@ function calculateSemanaEpidemiologica([DD, MM, YYYY]): string{
 
   return `Semana epidemiológica #${semana}`;
 }
+
+
+function cantSemanasEpidemio(YYYY){
+  const primerDiaDelActual    = moment(`${YYYY    }0101`, "YYYYMMDD");
+  const primerDiaDelSiguiente = moment(`${YYYY + 1}0101`, "YYYYMMDD");
+
+  console.log(
+    'Cantidad de días en el año: ' +
+    primerDiaDelSiguiente.diff(primerDiaDelActual, 'days')
+  );
+
+
+  
+}
+
+cantSemanasEpidemio(2020);
