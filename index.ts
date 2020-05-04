@@ -36,7 +36,7 @@ btn.addEventListener('click', () => {
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
   console.log(
     'días hasta fin de año: ' +
-    diaConsulta.diff(finDeAnio)
+    diaConsulta.diff(finDeAnio, 'days')
   );
 
 
