@@ -8,13 +8,13 @@ import moment from 'moment';
 
 //const primerDia = moment('20191229', 'YYYYMMDD');
 
-const primerDiaDelAnio = moment().startOf('year');
-console.log(
+//const primerDiaDelAnio = moment().startOf('year');
+/*console.log(
   //primerDiaDelAnio.format('DD[/]MM[/]YYYY')
   primerDiaDelAnio.startOf('week').format('DD[/]MM[/]YYYY')
-);
+);*/
 
-const diaUno = primerDiaDelAnio.startOf('week');
+//const diaUno = primerDiaDelAnio.startOf('week');
 
 const appDiv: HTMLElement = document.getElementById('app');
 const input: HTMLElement = document.getElementById('input');
@@ -31,6 +31,10 @@ input.addEventListener('keyup', (event) => {
 btn.addEventListener('click', () => {
   const [DD, MM, YYYY] = input['value'].split('/');
   const diaConsulta = moment(`${YYYY}${MM}${DD}`);
+
+  const primerDiaDelAnio = diaConsulta.startOf('year');
+  console.log('primerDiaDelAnio: ' + primerDiaDelAnio.format('DD[/]MM[/]YYYY'))
+  const diaUno = primerDiaDelAnio.startOf('week');
 
   const result = calculateSemanaEpidemiologica(diaUno, diaConsulta);
   appDiv.innerHTML = `<h4>${result}</h4>`;
