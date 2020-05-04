@@ -6,6 +6,7 @@ import moment from 'moment';
 import es from 'moment/locale/es';
 
 moment().localeData('es', es);
+const primerDia = moment('20191229', 'YYYYMMDD');
 
 const appDiv: HTMLElement = document.getElementById('app');
 const input: HTMLElement = document.getElementById('input');
@@ -13,31 +14,24 @@ const btn: HTMLElement = document.getElementById('btn');
 
 input.value = moment().format('DD[/]MM[/]YYYY');
 
-btn.addEventListener('click', () => {
-  console.log('hizo click');
+input.addEventListener('keyup', (event) => {
+  if(event.keyCode === 13){
+    btn.click();
+  }
 });
 
+btn.addEventListener('click', () => {
+  const [DD, MM, YYYY] = input.value.split('/');
+  const diaConsulta = moment(`${YYYY}${MM}${DD}`);
 
+  const result = calculateSemanaEpidemiologica(primerDia, diaConsulta);
+  appDiv.innerHTML = `<h4>${result}</h4>`;
+});
 
-const primerDia = moment('20191229', 'YYYYMMDD');
-const hoy = moment();
+function calculateSemanaEpidemiologica(primerDia, diaConsulta): string{
+  const diferenciaDias = diaConsulta.diff(primerDia, 'days');
 
-console.log('hoy: ' + hoy.format('dddd DD [de] MMMM [de] YYYY'));
-console.log('primerDia: ' + primerDia.format('dddd DD [de] MMMM [de] YYYY'));
-console.log('fromNow: ' + primerDia.fromNow());
-
-const diferencia = hoy.diff(primerDia, 'days');
-console.log('diferencia en días: ' + diferencia);
-
-let ret = calculateSemanaEpidemiologica(diferencia);
-console.log(ret);
-
-
-function calculateSemanaEpidemiologica(cantDiasFromInicio: number): string{
-  let semana = Math.floor(cantDiasFromInicio / 7) + 1;
+  const semana = Math.floor(diferenciaDias / 7) + 1;
 
   return `Semana epidemiológica #${semana}`;
 }
-
-
-appDiv.innerHTML = `<h4>${ret}</h4>`;
