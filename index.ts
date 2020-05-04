@@ -39,6 +39,12 @@ btn.addEventListener('click', () => {
 
   console.log('diaConsulta: ' + diaConsulta.format('DD[/]MM[/]YYYY'))
 
+  /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año. De lo contrario, se calcula el año próximo. */
+
+
+
+
+
   const result = calculateSemanaEpidemiologica(diaUno, diaConsulta);
   appDiv.innerHTML = `<h4>${result}</h4>`;
 });
