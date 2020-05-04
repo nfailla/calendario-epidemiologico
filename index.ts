@@ -34,10 +34,20 @@ btn.addEventListener('click', () => {
 
   /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año. De lo contrario, se calcula el año próximo. */
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
-  console.log(
-    'días hasta fin de año: ' +
-    diaConsulta.diff(finDeAnio, 'days')
-  );
+  const diasHastaFinDeAnio = Math.abs(diaConsulta.diff(finDeAnio, 'days'));
+
+  console.log(finDeAnio.format('dddd'));
+
+  const nombreDia = finDeAnio.format('dddd');
+  if(diasHastaFinDeAnio < 7 &&
+     nombreDia === 'Sunday' ||
+     nombreDia === 'Monday' ||
+     nombreDia === 'Tuesday'
+  ){
+    console.log('es semana 1 del próximo año');
+  }
+
+  
 
 
 
