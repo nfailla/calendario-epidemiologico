@@ -5,11 +5,18 @@ import './style.css';
 import moment from 'moment';
 import es from 'moment/locale/es';
 
-const appDiv: HTMLElement = document.getElementById('app');
-
 moment().localeData('es', es);
 
-//console.log(moment().format('dddd'));
+const appDiv: HTMLElement = document.getElementById('app');
+const input: HTMLElement = document.getElementById('input');
+const btn: HTMLElement = document.getElementById('btn');
+
+input.value = moment().format('DD[/]MM[/]YYYY');
+
+btn.addEventListener('click', () => {
+  console.log('hizo click');
+});
+
 
 
 const primerDia = moment('20191229', 'YYYYMMDD');
@@ -33,4 +40,4 @@ function calculateSemanaEpidemiologica(cantDiasFromInicio: number): string{
 }
 
 
-appDiv.innerHTML = `<h1>${ret}</h1>`;
+appDiv.innerHTML = `<h4>${ret}</h4>`;
