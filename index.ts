@@ -40,20 +40,21 @@ function calculateSemanaEpidemiologica([DD, MM, YYYY]): string{
 
   /* Si faltan menos de 7 días para el próximo año, y éste año termina un domingo-lunes-martes, el presente día es parte de la semana 1 del próximo año... */
   const finDeAnio = moment(`${YYYY}${MM}${DD}`).endOf('year');
-  const diasHastaFinDeAnio = Math.abs(moment(`${YYYY}${MM}${DD}`).diff(finDeAnio, 'days'));
-  console.log('diasHastaFinDeAnio: ' + diasHastaFinDeAnio);
+  // const diasHastaFinDeAnio = Math.abs(moment(`${YYYY}${MM}${DD}`).diff(finDeAnio, 'days'));
+  // console.log('diasHastaFinDeAnio: ' + diasHastaFinDeAnio);
 
   const nombreDiaFinDeAnio = finDeAnio.format('dddd');
   const nombreDiaConsulta = moment(`${YYYY}${MM}${DD}`).format('dddd');
-  console.log('nombreDia: ' + nombreDiaFinDeAnio);
+  console.log('nombre último día del año: ' + nombreDiaFinDeAnio);
 
+  const ultimaSemana = esUltimaSemana([YYYY, MM, DD]);
 
-  
+  console.log('última semana: ' + ultimaSemana);
 
-  if(esUltimaSemana &&
-     (nombreDiaFinDeAnio === 'Sunday' ||
-     nombreDiaFinDeAnio === 'Monday' ||
-     nombreDiaFinDeAnio === 'Tuesday')
+  if(ultimaSemana &&
+      (nombreDiaFinDeAnio === 'Sunday' ||
+      nombreDiaFinDeAnio === 'Monday' ||
+      nombreDiaFinDeAnio === 'Tuesday')
   ){
     return `Semana epidemiológica #fff`;
   }
@@ -71,18 +72,22 @@ function calculateSemanaEpidemiologica([DD, MM, YYYY]): string{
   return `Semana epidemiológica #${semana}`;
 }
 
+function esUltimaSemana([YYYY, MM, DD]) {
+  const ultimoDia = moment(`${YYYY}${MM}${DD}`).endOf('year');
+  const dia = moment(`${YYYY}${MM}${DD}`);
 
-function cantSemanasEpidemio(YYYY){
-  const primerDiaDelActual    = moment(`${YYYY    }0101`, "YYYYMMDD");
-  const primerDiaDelSiguiente = moment(`${YYYY + 1}0101`, "YYYYMMDD");
-
-  console.log(
-    'Cantidad de días en el año: ' +
-    primerDiaDelSiguiente.diff(primerDiaDelActual, 'days')
-  );
-
-
-
+  return ultimoDia.diff(dia, 'days') < 7;
 }
 
-cantSemanasEpidemio(2020);
+
+// function cantSemanasEpidemio(YYYY){
+//   const primerDiaDelActual    = moment(`${YYYY    }0101`, "YYYYMMDD");
+//   const primerDiaDelSiguiente = moment(`${YYYY + 1}0101`, "YYYYMMDD");
+
+//   console.log(
+//     'Cantidad de días en el año: ' +
+//     primerDiaDelSiguiente.diff(primerDiaDelActual, 'days')
+//   );
+// }
+
+//cantSemanasEpidemio(2020);
