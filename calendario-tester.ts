@@ -39,13 +39,13 @@ export function dibujar(YYYY){
 
 
 
-          if (semanas[semAnio[1]-1] == undefined){
-            semanas[semAnio[1]-1] = [];
+          if (semanas[semAnio[0]-1] == undefined){
+            semanas[semAnio[0]-1] = [];
           }
 
-          semanas[semAnio[1]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
+          semanas[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
 
-          
+
         }
       }
     }
