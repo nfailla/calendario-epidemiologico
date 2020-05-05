@@ -23,7 +23,9 @@ export function dibujar(YYYY){
           if (anioAnterior[semAnio[0]-1] == undefined){
             anioAnterior[semAnio[0]-1] = [];
           }
+
           anioAnterior[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
+          console.log(`anioAnterior, push: ${nombreDia} ${DD}/${MM}/${YYYY}`);
 
         } else if (semAnio[1] > YYYY){
           if (anioSiguiente[semAnio[0]-1] == undefined){
@@ -41,7 +43,7 @@ export function dibujar(YYYY){
     }
   }
 
-  if(anioAnterior){
+  if(anioAnterior.length){
     console.log('Año anterior');
     anioAnterior.forEach((sem, nroSemana) => {
       let SE = `SE #${nroSemana + 1}:
@@ -67,7 +69,7 @@ export function dibujar(YYYY){
     console.log(SE);
   });
 
-  if(anioSiguiente){
+  if(anioSiguiente.length){
     console.log('================================================');
     console.log('Año siguiente');
     anioSiguiente.forEach((sem, nroSemana) => {
