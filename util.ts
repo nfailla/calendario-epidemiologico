@@ -2,8 +2,7 @@ import moment from 'moment';
 
 export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
   if(YYYY==2021){
-    /* debug */
-    1 + 1;
+    let debug = 1 + 1;
   }
 
   //Valido que la fecha exista (p. ej. que no sea 29/02 en un ano no bisiesto, o una fecha inválida)
@@ -18,9 +17,10 @@ export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
 
   // De lo contrario, se calcula el presente año.
 
-  const primeroDeEnero = moment(`${YYYY}${MM}${DD}`).startOf('year');
+  //const primeroDeEnero = moment(`${YYYY}${MM}${DD}`).startOf('year');
+  //const diaUnoDeSemanaUno = primeroDeEnero.startOf('week');
 
-  const diaUnoDeSemanaUno = primeroDeEnero.startOf('week');
+  const diaUnoDeSemanaUno = moment(`${YYYY}${MM}${DD}`).startOf('year').startOf('week');
 
   const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days');
 
