@@ -26,6 +26,12 @@ btn.addEventListener('click', () => {
   appDiv.innerHTML = `<h4>${result}</h4>`;
 });
 
+inputCalendario.addEventListener('keyup', (event) => {
+  if(event.keyCode === 13){
+    btnCalendario.click();
+  }
+});
+
 btnCalendario.addEventListener('click', () => {
   const YYYY = inputCalendario['value'];
 
