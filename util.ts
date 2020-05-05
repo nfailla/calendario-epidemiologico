@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: number, esFinAnioAnterior: boolean = false): {semana, anio}{
+export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: number, tipoAnio: 'anterior' | 'actual' | 'siguiente' = 'actual'): {semana, anio}{
   if(YYYY == 2019){
     let debug = true;
   }
@@ -21,7 +21,7 @@ export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: numb
   const diaUnoDeSemanaUno = moment(`${YYYY}${MM}${DD}`).startOf('year').startOf('week');
   const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days');
 
-  if(esFinAnioAnterior && diferenciaDias >= 4 && diferenciaDias <= 6){
+  if((tipoAnio === 'anterior') && diferenciaDias >= 4 && diferenciaDias <= 6){
     return {
       semana: -1,
       anio: YYYY - 1
@@ -29,6 +29,13 @@ export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: numb
   }
 
   const nroSemana = Math.floor(diferenciaDias / 7) + 1;
+
+  if(tipoAnio === 'siguiente'){
+    return {
+      semana: nroSemana,
+      anio: YYYY - 1
+    };
+  }
 
   return {
     semana: nroSemana,
