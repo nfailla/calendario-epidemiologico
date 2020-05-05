@@ -9,15 +9,16 @@ export function dibujar(YYYY){
   //Año anterior. La primera semana epidemiológica del año próximo puede absorber como máximo del 29 al 31 de diciembre inclusive.
   for(let dia = 29; dia<=31; dia++){
     let anioAnterior = parseInt(YYYY) - 1;
-    let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica(dia.toString(), '12', anioAnterior); //DD, MM, YYYY
+    let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica(dia.toString(), '12', anioAnterior, true); //DD, MM, YYYY
 
     if(semAnio.anio == YYYY){ //Si el día pertenece a la primera semana epidemiológica del próximo año:
       if(!semanas[0]){
         semanas[0] = [];
       }
 
-      let nombreDia = _traducir(moment(`${anioAnterior}${12}${dia}`).format('dddd'));
-      semanas[0].push(`${nombreDia} ${dia}/${12}/${anioAnterior}`);
+      //let nombreDia = _traducir(moment(`${anioAnterior}${12}${dia}`).format('dddd'));
+      //semanas[0].push(`${nombreDia} ${dia}/${12}/${anioAnterior}`);
+      semanas[0].push(`${dia}/${12}/${anioAnterior}`);
     }
   }
 
@@ -31,11 +32,13 @@ export function dibujar(YYYY){
       let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica(DD, MM, YYYY);
 
       if(semAnio){
-        let nombreDia = _traducir(moment(`${YYYY}${MM}${DD}`).format('dddd'));
-          if (semanas[semAnio.semana - 1] == undefined){
-            semanas[semAnio.semana - 1] = [];
-          }
-          semanas[semAnio.semana - 1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
+        if (semanas[semAnio.semana - 1] == undefined){
+          semanas[semAnio.semana - 1] = [];
+        }
+
+        //let nombreDia = _traducir(moment(`${YYYY}${MM}${DD}`).format('dddd'));
+        //semanas[semAnio.semana - 1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
+        semanas[semAnio.semana - 1].push(`${DD}/${MM}/${YYYY}`);
       }
     }
   }
@@ -45,14 +48,16 @@ export function dibujar(YYYY){
     let proxAnio = parseInt(YYYY) + 1;
     let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica('0' + dia, '01', proxAnio); //DD, MM, YYYY
     if(semAnio.anio == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
-      let nombreDia = _traducir(moment(`${proxAnio}01${'0' + dia}`).format('dddd'));
-      semanas[semanas.length - 1].push(`${nombreDia} ${dia}/01/${proxAnio}`);
+      //let nombreDia = _traducir(moment(`${proxAnio}01${'0' + dia}`).format('dddd'));
+      //semanas[semanas.length - 1].push(`${nombreDia} ${dia}/01/${proxAnio}`);
+      semanas[semanas.length - 1].push(`${dia}/01/${proxAnio}`);
     }
   }
 
+  console.log(`|----------| - D - | - L - | - M - | - X - | - J - | - V - | - S - `);
+
   semanas.forEach((sem, nroSemana) => {
-    let SE = `SE #${nroSemana + 1}:
-    `;
+    let SE = `| - SE ${nroSemana + 1} - |`;
     sem.forEach(dia => {
       SE += `${dia}
       `;
