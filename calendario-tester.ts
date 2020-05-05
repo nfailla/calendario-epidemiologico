@@ -16,8 +16,6 @@ export function dibujar(YYYY){
         semanas[0] = [];
       }
 
-      //let nombreDia = _traducir(moment(`${anioAnterior}${12}${dia}`).format('dddd'));
-      //semanas[0].push(`${nombreDia} ${dia}/${12}/${anioAnterior}`);
       semanas[0].push(`${dia}/${12}/${anioAnterior}`);
     }
   }
@@ -36,8 +34,6 @@ export function dibujar(YYYY){
           semanas[semAnio.semana - 1] = [];
         }
 
-        //let nombreDia = _traducir(moment(`${YYYY}${MM}${DD}`).format('dddd'));
-        //semanas[semAnio.semana - 1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
         semanas[semAnio.semana - 1].push(`${DD}/${MM}/${YYYY}`);
       }
     }
