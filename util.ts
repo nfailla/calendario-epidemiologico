@@ -97,7 +97,13 @@ export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: numb
   //const diaUnoDeSemanaUno = moment(`${YYYY}${MM}${DD}`).startOf('year').startOf('week');
   const diaUno = moment(`${YYYY}${MM}${DD}`).startOf('year');
   const nombreDiaUno = moment(diaUno).format('dddd');
-  const diaUnoDeSemanaUno = nombreDiaUno == 'Sunday' ? diaUno : diaUno.startOf('week');
+
+  const diaUnoDeSemanaUno =
+    nombreDiaUno == 'Thursday' ||
+    nombreDiaUno == 'Friday' ||
+    nombreDiaUno == 'Saturday' ? diaUno.endOf('week').add(1, 'days') : diaUno.startOf('week');
+
+  //const diaUnoDeSemanaUno = nombreDiaUno == 'Sunday' ? diaUno : diaUno.startOf('week');
 
   const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days');
   const nroSemana = Math.floor(diferenciaDias / 7) + 1;
