@@ -2,7 +2,7 @@ import './style.css';
 import moment from 'moment';
 import * as util from './util';
 
-import * as calendario from './calendario';
+import * as calendario from './calendario-tester';
 
 const appDiv: HTMLElement = document.getElementById('app');
 const input: HTMLElement = document.getElementById('input');

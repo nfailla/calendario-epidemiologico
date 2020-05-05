@@ -4,9 +4,9 @@ import * as util from './util';
 
 export function dibujar(YYYY){
 
-  let semanas = [];
-  let anioAnterior = [];
-  let anioSiguiente = [];
+  let semanas = [[]]; // Array de arrays
+  let anioAnterior = [[]];
+  let anioSiguiente = [[]];
 
   for(let mes = 1; mes <= 12; mes++){
     let MM = ('0' + mes).slice(-2); //Formato MM: 01, 02 ... 12
@@ -19,18 +19,39 @@ export function dibujar(YYYY){
       if(semAnio){
         let txt = `SE #${semAnio[0]} del año ${semAnio[1]}`;
 
-        if (semAnio < YYYY){
-
-        } else if (semAnio > YYYY){
-
+        if (semAnio[1] < YYYY){
+          anioAnterior[semAnio[1]-1].push(txt);
+        } else if (semAnio[1] > YYYY){
+          anioSiguiente[semAnio[1]-1].push(txt);
         } else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
-          
+          semanas[semAnio[1]-1].push(txt);
         }
-
       }
     }
-
   }
 
+  if(anioAnterior){
+    console.log('Año anterior');
+    anioAnterior.forEach((sem, nroSemana) => {
+      let SE = `SE #${nroSemana + 1}:`;
+      sem.forEach((dia, nroDia) => {
+        SE += ` ${dia}, ${nroDia + 1}`;
+      });
 
+      console.log(SE);
+    });
+    console.log('================================================');
+  }
+
+  semanas.forEach((sem, index) => {
+    console.log(sem);
+  });
+
+  if(anioSiguiente){
+    console.log('================================================');
+    console.log('Año siguiente');
+    anioSiguiente.forEach((sem, index) => {
+      console.log(sem);
+    });
+  }
 }
