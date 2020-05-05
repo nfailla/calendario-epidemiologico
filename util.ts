@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
-  if(YYYY=2021){
+  if(YYYY==2021){
     console.log(2021);
   }
 
