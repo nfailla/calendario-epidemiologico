@@ -52,8 +52,7 @@ export function dibujar(YYYY){
     console.log('semAnio próx año:');
     console.log(semAnio);
     if(semAnio[1] == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
-      
-      let nombreDia = traducir(moment(`${YYYY}${12}${dia}`).format('dddd'));
+      let nombreDia = traducir(moment(`${proxAnio}01${dia}`).format('dddd'));
       semanas[semanas.length - 1].push(`${nombreDia} ${dia}/01/${proxAnio}`);
     }
   }
