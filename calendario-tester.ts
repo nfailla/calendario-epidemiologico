@@ -66,8 +66,9 @@ export function dibujar(YYYY){
 
   semanas.forEach((sem, nroSemana) => {
     let SE = `SE #${nroSemana + 1}:`;
-    sem.forEach((dia, nroDia) => {
-      SE += ` ${dia}, ${nroDia + 1}`;
+    sem.forEach(dia => {
+      SE += ` ${dia}
+      `;
     });
 
     console.log(SE);
