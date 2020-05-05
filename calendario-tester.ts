@@ -29,7 +29,7 @@ export function dibujar(YYYY){
 
       let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica(DD, MM, YYYY);
 
-      if(semAnio){
+      if(semAnio && semAnio.anio == YYYY){
         if (semanas[semAnio.semana - 1] == undefined){
           semanas[semAnio.semana - 1] = [];
         }
