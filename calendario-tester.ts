@@ -17,7 +17,12 @@ export function dibujar(YYYY){
       let semAnio: any[] = util.calculateSemanaEpidemiologica(DD, MM, YYYY);
 
       if(semAnio){
+
+        let nombreDia = traducir(moment(`${YYYY}${MM}${DD}`).format('dddd'));
+
         let txt = `SE #${semAnio[0]} del año ${semAnio[1]}`;
+
+
         if (semAnio[1] < YYYY){
           if (anioAnterior[semAnio[1]-1] == undefined){
             anioAnterior[semAnio[1]-1] = [];
@@ -31,30 +36,41 @@ export function dibujar(YYYY){
           anioSiguiente[semAnio[1]-1].push(txt);
 
         } else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
+
+
+
           if (semanas[semAnio[1]-1] == undefined){
             semanas[semAnio[1]-1] = [];
           }
-          semanas[semAnio[1]-1].push(txt);
+
+          semanas[semAnio[1]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
+
+          
         }
       }
     }
   }
 
-  if(anioAnterior){
-    console.log('Año anterior');
-    anioAnterior.forEach((sem, nroSemana) => {
-      let SE = `SE #${nroSemana + 1}:`;
-      sem.forEach((dia, nroDia) => {
-        SE += ` ${dia}, ${nroDia + 1}`;
-      });
+  // if(anioAnterior){
+  //   console.log('Año anterior');
+  //   anioAnterior.forEach((sem, nroSemana) => {
+  //     let SE = `SE #${nroSemana + 1}:`;
+  //     sem.forEach((dia, nroDia) => {
+  //       SE += ` ${dia}, ${nroDia + 1}`;
+  //     });
 
-      console.log(SE);
+  //     console.log(SE);
+  //   });
+  //   console.log('================================================');
+  // }
+
+  semanas.forEach((sem, nroSemana) => {
+    let SE = `SE #${nroSemana + 1}:`;
+    sem.forEach((dia, nroDia) => {
+      SE += ` ${dia}, ${nroDia + 1}`;
     });
-    console.log('================================================');
-  }
 
-  semanas.forEach((sem, index) => {
-    console.log(sem);
+    console.log(SE);
   });
 
   if(anioSiguiente){
@@ -63,5 +79,34 @@ export function dibujar(YYYY){
     anioSiguiente.forEach((sem, index) => {
       console.log(sem);
     });
+  }
+}
+
+
+function traducir(name){
+  switch(name){
+    case 'Sunday':
+      return 'Domingo';
+      break;
+    case 'Monday':
+      return 'Lunes';
+      break;
+    case 'Tuesday':
+      return 'Martes';
+      break;
+    case 'Wednesday':
+      return 'Miércoles';
+      break;
+    case 'Thursday':
+      return 'Jueves';
+      break;
+    case 'Friday':
+      return 'Viernes';
+      break;
+    case 'Saturday':
+      return 'Sábado';
+      break;
+    default:
+      return name;
   }
 }
