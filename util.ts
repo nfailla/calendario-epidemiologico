@@ -63,6 +63,10 @@ export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: numb
     return;
   }
 
+  if(DD == '10' && MM == '01'){
+    let debug = 1;
+  }
+
   const nombreDia = moment(`${YYYY}${MM}${DD}`).format('dddd');
 
   //Comienzo de año
@@ -105,7 +109,10 @@ export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: numb
 
   //const diaUnoDeSemanaUno = nombreDiaUno == 'Sunday' ? diaUno : diaUno.startOf('week');
 
-  const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days');
+  const diferenciaDias = (
+    moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days')
+    + 1
+  );
   const nroSemana = Math.floor(diferenciaDias / 7) + 1;
 
   return {
