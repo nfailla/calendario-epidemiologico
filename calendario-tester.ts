@@ -18,7 +18,6 @@ export function dibujar(YYYY){
 
       if(semAnio){
         let txt = `SE #${semAnio[0]} del año ${semAnio[1]}`;
-
         if (semAnio[1] < YYYY){
           anioAnterior[semAnio[1]-1].push(txt);
         } else if (semAnio[1] > YYYY){
