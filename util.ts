@@ -2,6 +2,11 @@ import moment from 'moment';
 
 export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
 
+  //Valido que la fecha exista (p. ej. que no sea 29/02 en un ano no bisiesto, o una fecha inválida)
+  if(!moment(`${YYYY}${MM}${DD}`)){
+    return;
+  }
+
   if(esPrimeraAnioSiguiente(YYYY, MM, DD)){
     //return `Semana epidemiológica #1 del año siguiente`;
     return [1, YYYY+1]; //Semana epidemiológica 1 del año siguiente al de la fecha de consulta

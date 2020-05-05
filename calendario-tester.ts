@@ -5,6 +5,8 @@ import * as util from './util';
 export function dibujar(YYYY){
 
   let semanas = [];
+  let anioAnterior = [];
+  let anioSiguiente = [];
 
   for(let mes = 1; mes <= 12; mes++){
     let MM = ('0' + mes).slice(-2); //Formato MM: 01, 02 ... 12
@@ -14,9 +16,18 @@ export function dibujar(YYYY){
 
       let semAnio: any[] = util.calculateSemanaEpidemiologica(DD, MM, YYYY);
 
-      let txt = `Semana epidemiológica #${semAnio[0]} del año ${semAnio[1]}`;
+      if(semAnio){
+        let txt = `SE #${semAnio[0]} del año ${semAnio[1]}`;
 
-      console.log(`${DD}/${MM}/${YYYY}: `, txt);
+        if (semAnio < YYYY){
+
+        } else if (semAnio > YYYY){
+
+        } else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
+          
+        }
+
+      }
     }
 
   }
