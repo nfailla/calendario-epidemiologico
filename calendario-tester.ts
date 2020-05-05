@@ -44,7 +44,7 @@ export function dibujar(YYYY){
     let proxAnio = parseInt(YYYY) + 1;
     let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica('0' + dia, '01', proxAnio, 'siguiente'); //DD, MM, YYYY
     if(semAnio.anio == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
-      semanas[semanas.length - 1].push(`${dia}/01/${proxAnio}`);
+      semanas[semanas.length - 1].push(`${'0' + dia}/01/${proxAnio}`);
     }
   }
 
