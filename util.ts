@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
+export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: number): any[]{
   if(YYYY==2021){
     let debug = 1 + 1;
   }
@@ -12,7 +12,7 @@ export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
 
   if(esPrimeraAnioSiguiente(YYYY, MM, DD)){
     //return `Semana epidemiológica #1 del año siguiente`;
-    return [1, YYYY+1]; //Semana epidemiológica 1 del año siguiente al de la fecha de consulta
+    return [1, YYYY + 1]; //Semana epidemiológica 1 del año siguiente al de la fecha de consulta
   }
 
   // De lo contrario, se calcula el presente año.
@@ -20,6 +20,10 @@ export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
   const diaUnoDeSemanaUno = moment(`${YYYY}${MM}${DD}`).startOf('year').startOf('week');
 
   const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days');
+
+  if(diferenciaDias >= 4 && diferenciaDias <= 6){
+    return [-1, YYYY - 1]; //Última semana del año pasado (si es 53 o 52 se verifica del otro lado)
+  }
 
   const semana = Math.floor(diferenciaDias / 7) + 1;
 

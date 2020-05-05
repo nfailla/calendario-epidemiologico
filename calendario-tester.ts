@@ -36,19 +36,10 @@ export function dibujar(YYYY){
 
       if(semAnio){
         let nombreDia = traducir(moment(`${YYYY}${MM}${DD}`).format('dddd'));
-
-        // if (semAnio[1] > YYYY){
-        //   if (anioSiguiente[semAnio[0]-1] == undefined){
-        //     anioSiguiente[semAnio[0]-1] = [];
-        //   }
-        //   anioSiguiente[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
-
-        //} else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
           if (semanas[semAnio[0]-1] == undefined){
             semanas[semAnio[0]-1] = [];
           }
           semanas[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
-        //}
       }
     }
   }
@@ -61,10 +52,7 @@ export function dibujar(YYYY){
     console.log('semAnio próx año:');
     console.log(semAnio);
     if(semAnio[1] == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
-      // if(!semanas[semanas.length]){
-      //   semanas[semanas.length] = [];
-      // }
-
+      
       let nombreDia = traducir(moment(`${YYYY}${12}${dia}`).format('dddd'));
       semanas[semanas.length - 1].push(`${nombreDia} ${dia}/${12}/${YYYY+1}`);
     }
