@@ -33,18 +33,18 @@ export function dibujar(YYYY){
       if(semAnio){
         let nombreDia = traducir(moment(`${YYYY}${MM}${DD}`).format('dddd'));
 
-        if (semAnio[1] > YYYY){
-          if (anioSiguiente[semAnio[0]-1] == undefined){
-            anioSiguiente[semAnio[0]-1] = [];
-          }
-          anioSiguiente[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
+        // if (semAnio[1] > YYYY){
+        //   if (anioSiguiente[semAnio[0]-1] == undefined){
+        //     anioSiguiente[semAnio[0]-1] = [];
+        //   }
+        //   anioSiguiente[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
 
-        } else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
+        //} else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
           if (semanas[semAnio[0]-1] == undefined){
             semanas[semAnio[0]-1] = [];
           }
           semanas[semAnio[0]-1].push(`${nombreDia} ${DD}/${MM}/${YYYY}`);
-        }
+        //}
       }
     }
   }
@@ -52,7 +52,7 @@ export function dibujar(YYYY){
   //Año siguiente. La última semana epidemiológica del año de la consulta puede absorber como máximo del 1 al 3 de enero inclusive.
   for(let dia = 1; dia<=3; dia++){
     let semAnio: any[] = util.calculateSemanaEpidemiologica(dia, 12, YYYY+1); //DD, MM, YYYY
-
+    console.log('semAnio próx año: %o', semAnio);
     if(semAnio[1] == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
       // if(!semanas[semanas.length]){
       //   semanas[semanas.length] = [];
@@ -75,20 +75,20 @@ export function dibujar(YYYY){
     console.log(SE);
   });
 
-  if(anioSiguiente.length){
-    console.log('================================================');
-    console.log('Año siguiente');
-    anioSiguiente.forEach((sem, nroSemana) => {
-      let SE = `SE #${nroSemana + 1}:
-      `;
-      sem.forEach(dia => {
-        SE += `${dia}
-        `;
-      });
+  // if(anioSiguiente.length){
+  //   console.log('================================================');
+  //   console.log('Año siguiente');
+  //   anioSiguiente.forEach((sem, nroSemana) => {
+  //     let SE = `SE #${nroSemana + 1}:
+  //     `;
+  //     sem.forEach(dia => {
+  //       SE += `${dia}
+  //       `;
+  //     });
 
-      console.log(SE);
-    });
-  }
+  //     console.log(SE);
+  //   });
+  // }
 }
 
 
