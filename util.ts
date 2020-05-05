@@ -4,7 +4,8 @@ export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
   if(YYYY==2021){
     console.log('debug, último día del año:');
     //console.log(moment(`${YYYY}${MM}${DD}`, 'YYYYMMDD').endOf('year'));
-    let momento = moment().year(YYYY).endOf('year');
+    let momento = moment();
+    momento.endOf('year').subtract(1, 'days');
     console.log('momento: ');
     console.log(momento);
   }
@@ -34,7 +35,7 @@ export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
 }
 
 export function esPrimeraAnioSiguiente(YYYY, MM, DD) {
-  const ultimoDia = moment(`${YYYY}${MM}${DD}`).endOf('year');
+  const ultimoDia = moment(`${YYYY}${MM}${DD}`).endOf('year').subtract(1, 'days'); //endOf('year') devuelve el primero de enero del próximo año, necesitamos restarle un día
   const nombreUltimoDia = ultimoDia.format('dddd');
 
   const dia = moment(`${YYYY}${MM}${DD}`);
