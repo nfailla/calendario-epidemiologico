@@ -19,10 +19,21 @@ export function dibujar(YYYY){
       if(semAnio){
         let txt = `SE #${semAnio[0]} del año ${semAnio[1]}`;
         if (semAnio[1] < YYYY){
+          if (anioAnterior[semAnio[1]-1] == undefined){
+            anioAnterior[semAnio[1]-1] = [];
+          }
           anioAnterior[semAnio[1]-1].push(txt);
+
         } else if (semAnio[1] > YYYY){
+          if (anioSiguiente[semAnio[1]-1] == undefined){
+            anioSiguiente[semAnio[1]-1] = [];
+          }
           anioSiguiente[semAnio[1]-1].push(txt);
+
         } else { //La semana epidemiológica de la fecha dada corresponde al año de dicha fecha
+          if (semanas[semAnio[1]-1] == undefined){
+            semanas[semAnio[1]-1] = [];
+          }
           semanas[semAnio[1]-1].push(txt);
         }
       }
