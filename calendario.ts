@@ -1,4 +1,4 @@
-//import moment from 'moment';
+import moment from 'moment';
 
 import * as util from './util';
 
@@ -15,6 +15,8 @@ export function dibujar(YYYY){
       let semAnio: any[] = util.calculateSemanaEpidemiologica(DD, MM, YYYY);
 
       let txt = `Semana epidemiológica #${semAnio[0]} del año ${semAnio[1]}`;
+
+      console.log(`${DD}/${MM}/${YYYY}: `, txt);
     }
 
   }
