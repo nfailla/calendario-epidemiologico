@@ -17,9 +17,6 @@ export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
 
   // De lo contrario, se calcula el presente año.
 
-  //const primeroDeEnero = moment(`${YYYY}${MM}${DD}`).startOf('year');
-  //const diaUnoDeSemanaUno = primeroDeEnero.startOf('week');
-
   const diaUnoDeSemanaUno = moment(`${YYYY}${MM}${DD}`).startOf('year').startOf('week');
 
   const diferenciaDias = moment(`${YYYY}${MM}${DD}`).diff(diaUnoDeSemanaUno, 'days');
