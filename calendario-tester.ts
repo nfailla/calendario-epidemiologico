@@ -9,8 +9,10 @@ export function dibujar(YYYY){
   let anioSiguiente = []; //Array (una sola semana como máx)
 
   //Año anterior. La primera semana epidemiológica del año próximo puede absorber como máximo del 29 al 31 inclusive.
-  for(let dia = 29; dia>=31; dia++){
+  for(let dia = 29; dia<=31; dia++){
     let semAnio: any[] = util.calculateSemanaEpidemiologica(dia, 12, YYYY); //DD, MM, YYYY
+    console.log('anioAnterior, semAnio: %o,', semAnio);
+
     if(semAnio[1] == YYYY){ //Si el día pertenece a la primera semana epidemiológica del próximo año:
       let nombreDia = traducir(moment(`${YYYY}${12}${dia}`).format('dddd'));
 
