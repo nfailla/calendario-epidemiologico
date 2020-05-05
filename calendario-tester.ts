@@ -50,6 +50,19 @@ export function dibujar(YYYY){
   }
 
   //Año siguiente. La última semana epidemiológica del año de la consulta puede absorber como máximo del 1 al 3 de enero inclusive.
+  for(let dia = 1; dia<=3; dia++){
+    let semAnio: any[] = util.calculateSemanaEpidemiologica(dia, 12, YYYY+1); //DD, MM, YYYY
+
+    if(semAnio[1] == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
+      // if(!semanas[semanas.length]){
+      //   semanas[semanas.length] = [];
+      // }
+
+      let nombreDia = traducir(moment(`${YYYY}${12}${dia}`).format('dddd'));
+      semanas[semanas.length - 1].push(`${nombreDia} ${dia}/${12}/${YYYY+1}`);
+    }
+  }
+
 
   semanas.forEach((sem, nroSemana) => {
     let SE = `SE #${nroSemana + 1}:
