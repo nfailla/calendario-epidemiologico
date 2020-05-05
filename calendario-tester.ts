@@ -7,23 +7,19 @@ export function dibujar(YYYY){
   let semanas = []; // Array de arrays (52 a 53 semanas)
   let anioSiguiente = []; //Array (una sola semana como máx)
 
-  //Año anterior. La primera semana epidemiológica del año próximo puede absorber como máximo del 29 al 31 inclusive.
+  //Año anterior. La primera semana epidemiológica del año próximo puede absorber como máximo del 29 al 31 de diciembre inclusive.
   for(let dia = 29; dia<=31; dia++){
     let semAnio: any[] = util.calculateSemanaEpidemiologica(dia, 12, YYYY-1); //DD, MM, YYYY
 
     if(semAnio[1] == YYYY){ //Si el día pertenece a la primera semana epidemiológica del próximo año:
-      let nombreDia = traducir(moment(`${YYYY}${12}${dia}`).format('dddd'));
-
       if(!semanas[0]){
         semanas[0] = [];
       }
 
+      let nombreDia = traducir(moment(`${YYYY}${12}${dia}`).format('dddd'));
       semanas[0].push(`${nombreDia} ${dia}/${12}/${YYYY-1}`);
-    }    
+    }
   }
-  
-  //Año siguiente. La primera semana epidemiológica del año próximo puede absorber como máximo del 29 al 31 inclusive.
-
 
   //Año de la consulta
   for(let mes = 1; mes <= 12; mes++){
@@ -52,6 +48,8 @@ export function dibujar(YYYY){
       }
     }
   }
+
+  //Año siguiente. La última semana epidemiológica del año de la consulta puede absorber como máximo del 1 al 3 de enero inclusive.
 
   semanas.forEach((sem, nroSemana) => {
     let SE = `SE #${nroSemana + 1}:
