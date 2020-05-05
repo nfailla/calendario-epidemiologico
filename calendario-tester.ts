@@ -54,13 +54,12 @@ export function dibujar(YYYY){
     }
   }
 
-  console.log(`|----------| - D - | - L - | - M - | - X - | - J - | - V - | - S - `);
+  console.log(`|-----------| - - D - - | - - L - - | - - M - - | - - X - - | - - J - - | - - V - - | - - S - - `);
 
   semanas.forEach((sem, nroSemana) => {
-    let SE = `| - SE ${nroSemana + 1} - |`;
+    let SE = `| - SE ${('0' + (nroSemana + 1)).slice(-2)} - `;
     sem.forEach(dia => {
-      SE += `${dia}
-      `;
+      SE += `| ${dia} `;
     });
 
     console.log(SE);
