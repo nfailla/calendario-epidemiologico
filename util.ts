@@ -1,6 +1,9 @@
 import moment from 'moment';
 
 export function calculateSemanaEpidemiologica(DD, MM, YYYY): any[]{
+  if(YYYY=2021){
+    console.log(2021);
+  }
 
   //Valido que la fecha exista (p. ej. que no sea 29/02 en un ano no bisiesto, o una fecha inválida)
   if(!moment(`${YYYY}${MM}${DD}`)){
