@@ -48,13 +48,11 @@ export function dibujar(YYYY){
     let proxAnio = parseInt(YYYY) + 1;
     let semAnio: {semana, anio} = util.calculateSemanaEpidemiologica('0' + dia, '01', proxAnio); //DD, MM, YYYY
     if(semAnio.anio == YYYY){ //Si el día pertenece a la última semana epidemiológica del próximo año:
-      //let nombreDia = _traducir(moment(`${proxAnio}01${'0' + dia}`).format('dddd'));
-      //semanas[semanas.length - 1].push(`${nombreDia} ${dia}/01/${proxAnio}`);
       semanas[semanas.length - 1].push(`${dia}/01/${proxAnio}`);
     }
   }
 
-  console.log(`|-----------| - - D - - | - - L - - | - - M - - | - - X - - | - - J - - | - - V - - | - - S - - `);
+  console.log(`|-----------| - - Do - - | - - Lu - - | - - Ma - - | - - Mi - - | - - Ju - - | - - Vi - - | - - Sá - - `);
 
   semanas.forEach((sem, nroSemana) => {
     let SE = `| - SE ${('0' + (nroSemana + 1)).slice(-2)} - `;
@@ -64,33 +62,4 @@ export function dibujar(YYYY){
 
     console.log(SE);
   });
-}
-
-
-function _traducir(name){
-  switch(name){
-    case 'Sunday':
-      return 'Domingo';
-      break;
-    case 'Monday':
-      return 'Lunes';
-      break;
-    case 'Tuesday':
-      return 'Martes';
-      break;
-    case 'Wednesday':
-      return 'Miércoles';
-      break;
-    case 'Thursday':
-      return 'Jueves';
-      break;
-    case 'Friday':
-      return 'Viernes';
-      break;
-    case 'Saturday':
-      return 'Sábado';
-      break;
-    default:
-      return name;
-  }
 }
