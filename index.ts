@@ -2,9 +2,13 @@ import './style.css';
 import moment from 'moment';
 import * as util from './util';
 
+import * as calendario from './calendario';
+
 const appDiv: HTMLElement = document.getElementById('app');
 const input: HTMLElement = document.getElementById('input');
 const btn: HTMLElement = document.getElementById('btn');
+const inputCalendario: HTMLElement = document.getElementById('input-calendario');
+const btnCalendario: HTMLElement = document.getElementById('btn-calendario');
 
 input['value'] = moment().format('DD[/]MM[/]YYYY');
 
@@ -22,3 +26,8 @@ btn.addEventListener('click', () => {
   appDiv.innerHTML = `<h4>${result}</h4>`;
 });
 
+btnCalendario.addEventListener('click', () => {
+  const YYYY = inputCalendario['value'];
+
+  calendario.dibujar(YYYY);
+});

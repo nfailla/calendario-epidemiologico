@@ -3,8 +3,8 @@ body {
   padding: 0;
 }
 
-#cabecera {
-  //margin: 0 10px;
+.oculto {
+  display: none;
 }
 
 .calendario {
