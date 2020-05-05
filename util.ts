@@ -30,7 +30,7 @@ export function calculateSemanaEpidemiologica(DD: string, MM: string, YYYY: numb
 
   const nroSemana = Math.floor(diferenciaDias / 7) + 1;
 
-  if(tipoAnio === 'siguiente'){
+  if(tipoAnio === 'siguiente' && diferenciaDias >= 4 && diferenciaDias <= 6){
     return {
       semana: nroSemana,
       anio: YYYY - 1
