@@ -22,8 +22,8 @@ btn.addEventListener('click', () => {
   const [DD, MM, YYYY] = input['value'].split('/');
   const diaConsulta = moment(`${YYYY}${MM}${DD}`);
 
-  const result = util.calculateSemanaEpidemiologica([DD, MM, YYYY]);
-  appDiv.innerHTML = `<h4>${result}</h4>`;
+  const result = util.calculateSemanaEpidemiologica(DD, MM, YYYY);
+  appDiv.innerHTML = `<h4>SE #${result.semana} del año ${result.anio}</h4>`;
 });
 
 inputCalendario.addEventListener('keyup', (event) => {
